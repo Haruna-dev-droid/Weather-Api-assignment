@@ -15,9 +15,7 @@ function getWeather(city) {
           <h2 class="text-3xl font-bold text-gray-800 mb-2">${data.name}, ${
         data.sys.country
       }</h2>
-          <p class="text-lg text-gray-600 mb-4">${
-            data.weather[0].description
-          }</p>
+          
           <p class="text-6xl font-bold text-sky-500 mb-4">${Math.round(
             data.main.temp
           )}°C</p>
