@@ -19,10 +19,12 @@ function getWeather(city) {
           <p class="text-6xl font-bold text-sky-500 mb-4">${Math.round(
             data.main.temp
           )}°C</p>
+          
           <div class="flex justify-center gap-6 text-gray-700">
             <p>💧 Humidity: ${data.main.humidity}%</p>
             <p>🌬 Wind: ${data.wind.speed} m/s</p>
           </div>
+
         </div>`;
     })
     .catch((error) => {
