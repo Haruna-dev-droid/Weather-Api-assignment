@@ -2,6 +2,7 @@ const APIKey = "1fa486d6c5822e02fb63a283d4072799";
 const searchBtn = document.getElementById("btnSearch");
 const searchInput = document.getElementById("search-input");
 const weatherResult = document.getElementById("weather-result");
+const seeMore = document.getElementById("see-more");
 
 function getWeather(city) {
   const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}&units=metric`;
@@ -26,11 +27,16 @@ function getWeather(city) {
           </div>
 
         </div>`;
+
+      seeMore.innerHTML = `<div class="mt-8 text-center">
+          <a href="https://openweathermap.org/city/${data.id}" target="_blank" class="bg-white rounded-lg w-50 p-3 text-blue-500 hover:text-black">
+            See more details`;
     })
     .catch((error) => {
       weatherResult.innerHTML = `<div class="bg-red-100 text-red-800 p-4 rounded-lg">
         <p>City Not Found!</p>
       </div>`;
+      seeMore.innerHTML = "";
     });
 }
 
