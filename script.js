@@ -11,57 +11,52 @@ function getWeather(city) {
     .then((response) => response.json())
     .then((data) => {
       weatherResult.innerHTML = `
-        <div class="bg-white rounded-lg shadow-lg p-6 text-center max-w-md mb-10 mx-auto">
-          <h2 class="text-3xl font-bold text-gray-800 mb-2">${data.name}, ${
+      <div class="bg-white/10 backdrop-blur-lg border  border-white/20 rounded-2xl shadow-2xl p-8 text-center max-w-lg mx-auto animate-fadeIn">
+        
+      
+        <h2 class="text-3xl font-bold text-white mb-2">${data.name}, ${
         data.sys.country
       }</h2>
-          
-          <p class="text-6xl font-bold text-sky-500 mb-4">${Math.round(
+        
+     
+        <div class="flex flex-col items-center mt-4">
+        <p class="text-6xl">⛅</p>
+          <p class="text-6xl font-extrabold text-sky-300 mb-2">${Math.round(
             data.main.temp
           )}°C</p>
-          
-          <div class="flex justify-center gap-6 text-gray-700">
-            <p>💧 Humidity: ${data.main.humidity}%</p>
-            <p>🌬 Wind: ${data.wind.speed} m/s</p>
-          </div>
+          <p class="capitalize text-gray-300 text-lg"> ${
+            data.weather[0].description
+          } </p>
+        </div>
 
-           <div id="see-more-info" class="hidden mt-6 grid grid-cols-2 gap-4">
-            
-            <div class="bg-gray-100 p-3 rounded-lg shadow text-gray-800">
-              🌡 <span class="font-bold">Feels like:</span> ${Math.round(
-                data.main.feels_like
-              )}°C
-            </div>
-            
-            <div class="bg-gray-100 p-3 rounded-lg shadow text-gray-800">
-              📈 <span class="font-bold">Max Temp:</span> ${Math.round(
-                data.main.temp_max
-              )}°C
-            </div>
-            
-            <div class="bg-gray-100 p-3 rounded-lg shadow text-gray-800">
-              📉 <span class="font-bold">Min Temp:</span> ${Math.round(
-                data.main.temp_min
-              )}°C
-            </div>
-            
-            <div class="bg-gray-100 p-3 rounded-lg shadow text-gray-800">
-              ☁ <span class="font-bold">Weather:</span> ${
-                data.weather[0].description
-              }
-            </div>
-            
-            <div class="bg-gray-100 p-3 rounded-lg shadow text-gray-800 col-span-2">
-              🗓 <span class="font-bold">Pressure:</span> ${
-                data.main.pressure
-              } hPa
-            </div>
-          </div>
-          
-          <button id="toggle-more" class="mt-4 bg-sky-500 text-white px-4 py-2 rounded-lg hover:bg-sky-600">
-            See More
-          </button>
-        </div>`;
+      
+        <div class="mt-6 flex justify-center gap-8 text-gray-200 text-md">
+          <p>💧 Humidity: ${data.main.humidity}%</p>
+          <p>🌬 Wind: ${data.wind.speed} m/s</p>
+        </div>
+
+      
+        <div id="see-more-info" class="hidden mt-6 grid grid-cols-2 gap-4 text-gray-100 ">
+          <div class="bg-white/10 p-3 rounded-lg">🌡 Feels like: ${Math.round(
+            data.main.feels_like
+          )}°C</div>
+          <div class="bg-white/10 p-3 rounded-lg">📈 Max Temp: ${Math.round(
+            data.main.temp_max
+          )}°C</div>
+          <div class="bg-white/10 p-3 rounded-lg">📉 Min Temp: ${Math.round(
+            data.main.temp_min
+          )}°C</div>
+          <div class="bg-white/10 p-3 rounded-lg ">🗓 Pressure: ${
+            data.main.pressure
+          } hPa</div>
+        </div>
+
+        <!-- Button -->
+        <button id="toggle-more" class="mt-6 bg-sky-500/90 hover:bg-sky-600 px-6 py-2 rounded-xl font-semibold transition">
+          See More
+        </button>
+      </div>
+    `;
 
       // 🔑 Add the event listener AFTER injecting HTML
       const toggleBtn = document.getElementById("toggle-more");
@@ -79,7 +74,7 @@ function getWeather(city) {
     })
     .catch((error) => {
       weatherResult.innerHTML = `
-        <div class="bg-red-100 text-red-800 p-4 rounded-lg">
+        <div class="bg-red-100 text-center mx-auto w-md text-red-800 p-4 rounded-lg">
           <p>City Not Found!</p>
         </div>`;
     });
@@ -92,7 +87,7 @@ searchBtn.addEventListener("click", (e) => {
     getWeather(city);
     searchInput.value = "";
   } else {
-    weatherResult.innerHTML = `<div class="bg-red-600 text-white p-4 rounded-lg">
+    weatherResult.innerHTML = `<div class="bg-red-600 text-center mx-auto w-md text-white p-4 rounded-lg">
       <p class="font-bold">Warning:</p>
       <p>Please enter a city name.</p>
     </div>`;
