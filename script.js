@@ -51,14 +51,13 @@ function getWeather(city) {
           } hPa</div>
         </div>
 
-        <!-- Button -->
-        <button id="toggle-more" class="mt-6 bg-sky-500/90 hover:bg-sky-600 px-6 py-2 rounded-xl font-semibold transition">
+       
+        <button id="toggle-more" class="mt-6 bg-sky-500/90 cursor-pointer hover:bg-sky-600 px-6 py-2 rounded-xl font-semibold transition">
           See More
         </button>
       </div>
     `;
 
-      // 🔑 Add the event listener AFTER injecting HTML
       const toggleBtn = document.getElementById("toggle-more");
       const seeMoreInfo = document.getElementById("see-more-info");
 
